@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    cassandra:
+      contact-points: 127.0.0.1
+      keyspace-name: oauth
+      local-datacenter: datacenter1
+
+jwt:
+  secret: "super-secret-key"
+  issuer: "https://api.example.com"
+  access-token-validity: 3600
+  refresh-token-validity: 604800
+
+
+
+# server:
+#   port: 8080
+
+# spring:
+#   application:
+#     name: oauth2-microservice
+#   cassandra:
+#     contact-points: 127.0.0.1
+#     local-datacenter: datacenter1
+#     keyspace-name: oauth
+#     schema-action: none
+
+# jwt:
+#   secret: super-secret-key
+#   issuer: https://api.example.com
+#   access-token-validity: 3600      # in seconds (1 hour)
+#   refresh-token-validity: 604800   # in seconds (7 days)
+
+# logging:
+#   level:
+#     root: INFO
+#     com.example.oauth2: DEBUG

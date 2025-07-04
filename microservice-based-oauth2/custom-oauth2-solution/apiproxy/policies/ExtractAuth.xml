@@ -1,0 +1,6 @@
+<ExtractVariables name="ExtractAuth">
+  <FormParam name="client_id" />
+  <FormParam name="client_secret" />
+  <FormParam name="refresh_token" />
+  <FormParam name="grant_type" />
+</ExtractVariables>

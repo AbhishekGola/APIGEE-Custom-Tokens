@@ -1,0 +1,37 @@
+<ProxyEndpoint name="default">
+  <PreFlow>
+    <Request>
+      <Step><Name>ExtractAuth</Name></Step>
+      <Step><Name>GenerateToken</Name></Step>
+      <Step><Name>AssignTokenResponse</Name></Step>
+    </Request>
+    <Response/>
+  </PreFlow>
+  <HTTPProxyConnection>
+    <BasePath>/oauth2</BasePath>
+    <VirtualHost>default</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name="noRoute">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+  <FaultRules>
+    <FaultRule name="RaiseInvalidToken">
+      <Condition>token.valid = false</Condition>
+      <FaultResponse>
+        <Set>
+          <StatusCode>401</StatusCode>
+          <ReasonPhrase>Unauthorized</ReasonPhrase>
+          <Headers>
+            <Header name="WWW-Authenticate">Bearer realm="apigee", error="invalid_token"</Header>
+          </Headers>
+          <Payload contentType="application/json">
+            {
+              "error": "invalid_token",
+              "error_description": "The access token is invalid or expired."
+            }
+          </Payload>
+        </Set>
+      </FaultResponse>
+    </FaultRule>
+  </FaultRules>
+</ProxyEndpoint>

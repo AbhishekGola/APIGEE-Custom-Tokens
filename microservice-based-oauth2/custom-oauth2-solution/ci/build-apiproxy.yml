@@ -1,0 +1,39 @@
+# CI workflow for building apiproxy
+name: Build Apigee Proxy
+
+on:
+  push:
+    paths:
+      - 'apiproxy/**'
+      - 'ci/build-apiproxy.yml'
+  workflow_dispatch:
+
+jobs:
+  build-apiproxy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Apigee Linter
+        run: npm install -g apigeelint
+
+      - name: Lint Apiproxy bundle
+        run: apigeelint -s apiproxy/ -f stylish
+
+      - name: Zip API Proxy Bundle
+        run: |
+          mkdir -p dist
+          zip -r dist/custom-oauth2-proxy.zip apiproxy/
+
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: custom-oauth2-proxy
+          path: dist/custom-oauth2-proxy.zip

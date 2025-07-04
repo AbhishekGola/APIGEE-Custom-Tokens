@@ -1,0 +1,42 @@
+# CD workflow for deploying KVM
+name: Deploy Encrypted KVM to Apigee Edge
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'config/kvm-template.json'
+      - 'cd/deploy-kvm.yml'
+
+jobs:
+  deploy-kvm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Set Up Node.js (for apigeetool)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install apigeetool
+        run: npm install -g apigeetool
+
+      - name: Deploy Encrypted KVM
+        run: |
+          apigeetool createkvmmap -n oauth2-config \
+            -e ${{ secrets.APIGEE_ENV }} \
+            -o ${{ secrets.APIGEE_ORG }} \
+            -u ${{ secrets.APIGEE_USER }} \
+            -p ${{ secrets.APIGEE_PASSWORD }} \
+            --encrypted \
+            --mapEntry '{"name":"jwt_secret","value":"super-secret"}' \
+            --mapEntry '{"name":"cassandra_host","value":"10.0.0.5"}' \
+            --mapEntry '{"name":"cassandra_datacenter","value":"datacenter1"}' \
+            --mapEntry '{"name":"token_ttl","value":"3600"}' \
+            --mapEntry '{"name":"refresh_ttl","value":"604800"}'
+
+        env:
+          NODE_ENV: production

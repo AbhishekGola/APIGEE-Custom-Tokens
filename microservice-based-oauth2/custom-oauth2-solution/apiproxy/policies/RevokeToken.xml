@@ -1,0 +1,6 @@
+<!-- RevokeToken policy -->
+<JavaCallout name="RevokeToken">
+  <ClassName>com.example.TokenRevoker</ClassName>
+  <ResourceURL>java://token-revoker.jar</ResourceURL>
+</JavaCallout>
+

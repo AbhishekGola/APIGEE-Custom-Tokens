@@ -1,0 +1,11 @@
+{
+  "name": "oauth2-config",
+  "encrypted": true,
+  "entries": [
+    { "name": "jwt_secret", "value": "super-secret" },
+    { "name": "cassandra_host", "value": "localhost" },
+    { "name": "cassandra_datacenter", "value": "datacenter1" },
+    { "name": "token_ttl", "value": "3600" },
+    { "name": "refresh_ttl", "value": "604800" }
+  ]
+}

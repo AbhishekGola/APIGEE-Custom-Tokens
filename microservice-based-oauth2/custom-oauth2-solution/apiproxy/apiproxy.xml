@@ -1,0 +1,14 @@
+<APIProxy name="custom-oauth2-proxy">
+  <Description>Custom OAuth2 proxy using Cassandra</Description>
+  <BasePaths>
+    <BasePath>/oauth2</BasePath>
+  </BasePaths>
+  <Policies/>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+  <Resources/>
+</APIProxy>

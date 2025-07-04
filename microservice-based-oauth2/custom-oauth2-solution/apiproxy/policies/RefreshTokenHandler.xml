@@ -1,0 +1,5 @@
+<!-- RefreshTokenHandler policy -->
+<JavaCallout name="RefreshTokenHandler">
+  <ClassName>com.example.RefreshTokenHandler</ClassName>
+  <ResourceURL>java://refresh-token-handler.jar</ResourceURL>
+</JavaCallout>

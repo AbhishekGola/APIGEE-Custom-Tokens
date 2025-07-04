@@ -1,0 +1,5 @@
+<!-- AssignTokenResponse policy -->
+<JavaCallout name="AssignTokenResponse">
+  <ClassName>com.example.TokenResponseAssigner</ClassName>
+  <ResourceURL>java://token-response-assigner.jar</ResourceURL>
+</JavaCallout>

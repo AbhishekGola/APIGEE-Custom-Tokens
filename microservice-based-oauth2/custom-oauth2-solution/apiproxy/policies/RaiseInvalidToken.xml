@@ -1,0 +1,5 @@
+<!-- RaiseInvalidToken policy -->
+<JavaCallout name="RaiseInvalidToken">
+  <ClassName>com.example.InvalidTokenRaiser</ClassName>
+  <ResourceURL>java://invalid-token-raiser.jar</ResourceURL>
+</JavaCallout>

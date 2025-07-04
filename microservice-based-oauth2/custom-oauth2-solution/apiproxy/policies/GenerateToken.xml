@@ -1,0 +1,4 @@
+<JavaCallout name="GenerateToken">
+  <ClassName>com.example.TokenGenerator</ClassName>
+  <ResourceURL>java://token-generator.jar</ResourceURL>
+</JavaCallout>

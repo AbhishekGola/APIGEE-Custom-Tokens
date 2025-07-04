@@ -1,0 +1,13 @@
+<AssignMessage name="AssignTokenResponseMessage">
+  <AssignTo type="response" createNew="false"/>
+  <Set>
+    <Payload contentType="application/json">
+      {
+        "access_token": "{generated.token}",
+        "refresh_token": "{generated.refresh_token}",
+        "token_type": "Bearer",
+        "expires_in": {generated.expires_in}
+      }
+    </Payload>
+  </Set>
+</AssignMessage>
