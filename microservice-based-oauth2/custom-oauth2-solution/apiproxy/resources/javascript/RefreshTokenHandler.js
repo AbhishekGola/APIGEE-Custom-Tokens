@@ -2,9 +2,13 @@
 var jwt = require('jsonwebtoken');
 var uuid = require('uuid');
 
+print('Starting RefreshTokenHandler.js execution');
+
 var refreshToken = context.getVariable('request.formparam.refresh_token');
 var clientId = context.getVariable('request.formparam.client_id');
 var validRefreshTokens = context.getVariable('valid.refresh.tokens') || {};
+
+print('Processing refresh token...');
 
 if (!refreshToken || !validRefreshTokens[refreshToken]) {
     context.setVariable('refresh.valid', false);
@@ -33,3 +37,5 @@ if (!refreshToken || !validRefreshTokens[refreshToken]) {
     context.setVariable('new.refresh_token', newRefresh);
     context.setVariable('new.expires_in', 3600);
 }
+
+print('Refresh token processed and response set');
