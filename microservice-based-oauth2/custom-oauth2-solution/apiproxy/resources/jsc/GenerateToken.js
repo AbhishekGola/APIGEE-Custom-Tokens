@@ -45,7 +45,7 @@ function base64url(source) {
   return encoded;
 }
 
-var header = { alg: 'HS256', typ: 'JWT' };
+var header = { alg: 'HS512', typ: 'JWT' };
 var payload = {
     iss: 'https://api.example.com',
     sub: clientId,

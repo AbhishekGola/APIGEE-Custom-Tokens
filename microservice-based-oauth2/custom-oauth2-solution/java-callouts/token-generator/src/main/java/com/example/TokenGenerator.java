@@ -48,6 +48,21 @@ public class TokenGenerator implements Execution {
             "INSERT INTO refresh_tokens (refresh_token, client_id, issued_at, expires_at, revoked) VALUES (?, ?, ?, ?, ?)")
             .addPositionalValues(refreshToken, clientId, now, refreshExpiry, false)
             .build());
+      } catch (Exception cqlEx) {
+        // Cassandra unavailable, fallback to CSV
+        try {
+          String fileName = System.getProperty("java.io.tmpdir") + java.io.File.separator + "apigee_tokens.csv";
+          java.nio.file.Path path = java.nio.file.Paths.get(fileName);
+          if (!java.nio.file.Files.exists(path)) {
+            java.nio.file.Files.createFile(path);
+          }
+          String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+            jwt, refreshToken, clientId, scope, now.toString(), expiry.toString(), refreshExpiry.toString(), "Bearer", false);
+          java.nio.file.Files.write(path, csvLine.getBytes(), java.nio.file.StandardOpenOption.APPEND);
+        } catch (Exception fileEx) {
+          msgCtx.setVariable("token.error", "Failed to write token to local CSV: " + fileEx.getMessage());
+          return ExecutionResult.ABORT;
+        }
       }
 
       msgCtx.setVariable("generated.token", jwt);

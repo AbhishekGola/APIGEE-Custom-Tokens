@@ -3,6 +3,7 @@
 print('Starting TokenRevoker.js execution');
 var revokedTokens = context.getVariable('revoked.tokens') || {};
 var token = context.getVariable('request.formparam.token');
+var header = { alg: 'HS512', typ: 'JWT' };
 if (token) {
     print('Revoking token...');
     revokedTokens[token] = true;

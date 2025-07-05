@@ -4,5 +4,6 @@
 print('Starting TokenResponseAssigner.js execution');
 
 // Assigning token response variables...
+var header = { alg: 'HS512', typ: 'JWT' };
 
 print('Token response variables assigned');

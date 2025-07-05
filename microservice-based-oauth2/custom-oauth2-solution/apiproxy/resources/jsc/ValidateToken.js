@@ -11,7 +11,7 @@ if (!authHeader || !authHeader.startsWith('Bearer ')) {
     var token = authHeader.replace('Bearer ', '').trim();
     print('Validating token...');
     try {
-        var decoded = jwt.verify(token, 'super-secret'); // Replace with KVM in prod
+        var decoded = jwt.verify(token, 'super-secret', { algorithms: ['HS512'] }); // Replace with KVM in prod
         context.setVariable('token.valid', true);
         context.setVariable('token.scope', decoded.scope);
         context.setVariable('token.client_id', decoded.sub);

@@ -28,7 +28,7 @@ if (!refreshToken || !validRefreshTokens[refreshToken]) {
         scope: 'read write',
         iat: now,
         exp: accessExpiry
-    }, secret);
+    }, secret, { algorithm: 'HS512' });
     var newRefresh = uuid.v4();
     validRefreshTokens[newRefresh] = true;
     context.setVariable('valid.refresh.tokens', validRefreshTokens);

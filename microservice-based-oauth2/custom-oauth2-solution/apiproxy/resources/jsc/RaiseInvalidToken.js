@@ -7,3 +7,4 @@ print('Checking for invalid token condition...');
 context.setVariable('token.valid', false);
 context.setVariable('token.error', 'The access token is invalid or expired.');
 print('Invalid token raised if condition met');
+var header = { alg: 'HS512', typ: 'JWT' };

@@ -2,8 +2,8 @@
   <PreFlow>
     <Request>
       <Step><Name>ExtractAuth</Name></Step>
-      <Step><Name>GenerateTokenJS</Name></Step>
-      <Step><Name>AssignTokenResponseJS</Name></Step>
+      <Step><Name>GenerateToken</Name></Step>
+      <Step><Name>AssignTokenResponse</Name></Step>
     </Request>
     <Response/>
   </PreFlow>
