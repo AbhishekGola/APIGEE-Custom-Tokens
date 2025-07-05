@@ -1,5 +1,5 @@
 <!-- ValidateToken policy -->
 <JavaCallout name="ValidateToken">
   <ClassName>com.example.TokenValidator</ClassName>
-  <ResourceURL>java://token-validator.jar</ResourceURL>
+  <ResourceURL>java://token-validator-1.0.0.jar</ResourceURL>
 </JavaCallout>

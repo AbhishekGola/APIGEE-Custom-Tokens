@@ -1,7 +1,7 @@
 <!-- RefreshTokenHandler policy -->
 <JavaCallout name="RefreshTokenHandler">
   <ClassName>com.example.RefreshTokenHandler</ClassName>
-  <ResourceURL>java://refresh-token-handler.jar</ResourceURL>
+  <ResourceURL>java://refresh-token-handler-1.0.0.jar</ResourceURL>
   <Properties>
     <Property name="cassandra.host">{cassandra_host}</Property>
     <Property name="cassandra.datacenter">{cassandra_datacenter}</Property>
