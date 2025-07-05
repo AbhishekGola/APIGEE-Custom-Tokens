@@ -1,0 +1,3 @@
+<Javascript name="RaiseInvalidTokenJS">
+  <ResourceURL>javascript://RaiseInvalidToken.js</ResourceURL>
+</Javascript>

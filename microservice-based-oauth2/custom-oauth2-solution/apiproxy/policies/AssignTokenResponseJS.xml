@@ -1,0 +1,3 @@
+<Javascript name="AssignTokenResponseJS">
+  <ResourceURL>javascript://TokenResponseAssigner.js</ResourceURL>
+</Javascript>
