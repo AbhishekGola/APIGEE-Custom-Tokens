@@ -15,15 +15,27 @@
       <groupId>com.apigee.flow</groupId>
       <artifactId>message-flow</artifactId>
       <version>1.0.0</version>
-      <scope>provided</scope>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/message-flow-1.0.0.jar</systemPath>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.apigee.expressions</groupId>
+      <artifactId>expressions</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/expressions-1.0.0.jar</systemPath>
+      <type>jar</type>
     </dependency>
     <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
+      <version>4.4.0</version>
     </dependency>
     <dependency>
       <groupId>com.datastax.oss</groupId>
       <artifactId>java-driver-core</artifactId>
+      <version>4.17.0</version>
     </dependency>
   </dependencies>
 </project>

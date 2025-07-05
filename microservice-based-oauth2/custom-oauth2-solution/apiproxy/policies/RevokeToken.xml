@@ -2,5 +2,10 @@
 <JavaCallout name="RevokeToken">
   <ClassName>com.example.TokenRevoker</ClassName>
   <ResourceURL>java://token-revoker.jar</ResourceURL>
+  <Properties>
+    <Property name="cassandra.host">{cassandra_host}</Property>
+    <Property name="cassandra.datacenter">{cassandra_datacenter}</Property>
+    <Property name="cassandra.keyspace">{cassandra_keyspace}</Property>
+  </Properties>
 </JavaCallout>
 

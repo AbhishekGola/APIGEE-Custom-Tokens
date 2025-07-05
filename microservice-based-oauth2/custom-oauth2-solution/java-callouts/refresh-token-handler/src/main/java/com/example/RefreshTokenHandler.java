@@ -2,6 +2,7 @@ package com.example;
 
 import com.apigee.flow.execution.*;
 import com.apigee.flow.execution.ExecutionContext;
+import com.apigee.flow.execution.spi.Execution;
 import com.apigee.flow.message.MessageContext;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -18,9 +19,18 @@ public class RefreshTokenHandler implements Execution {
       String refreshToken = msgCtx.getVariable("request.formparam.refresh_token");
       String clientId = msgCtx.getVariable("request.formparam.client_id");
 
+      String cassandraHost = msgCtx.getVariable("cassandra.host");
+      String cassandraDatacenter = msgCtx.getVariable("cassandra.datacenter");
+      String cassandraKeyspace = msgCtx.getVariable("cassandra.keyspace");
+      // Fallbacks if not set
+      if (cassandraHost == null) cassandraHost = "127.0.0.1";
+      if (cassandraDatacenter == null) cassandraDatacenter = "datacenter1";
+      if (cassandraKeyspace == null) cassandraKeyspace = "oauth";
+
       try (CqlSession session = CqlSession.builder()
-          .withLocalDatacenter("datacenter1")
-          .withKeyspace("oauth")
+          .addContactPoint(new java.net.InetSocketAddress(cassandraHost, 9042))
+          .withLocalDatacenter(cassandraDatacenter)
+          .withKeyspace(cassandraKeyspace)
           .build()) {
 
         Row row = session.execute(SimpleStatement.builder(

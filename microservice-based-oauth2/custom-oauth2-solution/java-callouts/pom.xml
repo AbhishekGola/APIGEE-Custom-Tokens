@@ -1,36 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/maven-v4_0_0.xsd">
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.example</groupId>
   <artifactId>oauth2-java-callouts</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>OAuth2 Java Callouts Parent</name>
-
   <modules>
     <module>token-generator</module>
     <module>token-validator</module>
     <module>refresh-token-handler</module>
+    <module>token-response-assigner</module>
+    <module>invalid-token-raiser</module>
+    <module>token-revoker</module>
   </modules>
-
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java-jwt.version>4.4.0</java-jwt.version>
     <cassandra.version>4.17.0</cassandra.version>
   </properties>
-
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>com.auth0</groupId>
-        <artifactId>java-jwt</artifactId>
-        <version>${java-jwt.version}</version>
-      </dependency>
       <dependency>
         <groupId>com.datastax.oss</groupId>
         <artifactId>java-driver-core</artifactId>
@@ -38,11 +30,9 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <build>
     <pluginManagement>
       <plugins>
-        <!-- Shared compiler plugin settings -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -52,13 +42,39 @@
             <target>${maven.compiler.target}</target>
           </configuration>
         </plugin>
-
-        <!-- Shared JAR plugin -->
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.3.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>copy-jars-to-apiproxy</id>
+            <phase>install</phase>
+            <configuration>
+              <target>
+                <copy todir="${project.basedir}/../apiproxy/resources/java" flatten="true" overwrite="true" failonerror="false">
+                  <fileset dir="${project.basedir}/token-generator/target" includes="*.jar" erroronmissingdir="false"/>
+                  <fileset dir="${project.basedir}/token-validator/target" includes="*.jar" erroronmissingdir="false"/>
+                  <fileset dir="${project.basedir}/refresh-token-handler/target" includes="*.jar" erroronmissingdir="false"/>
+                  <fileset dir="${project.basedir}/token-response-assigner/target" includes="*.jar" erroronmissingdir="false"/>
+                  <fileset dir="${project.basedir}/invalid-token-raiser/target" includes="*.jar" erroronmissingdir="false"/>
+                  <fileset dir="${project.basedir}/token-revoker/target" includes="*.jar" erroronmissingdir="false"/>
+                </copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>

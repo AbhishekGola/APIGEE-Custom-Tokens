@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <copy flatten="true" todir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/../apiproxy/resources/java" failonerror="false" overwrite="true">
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/token-generator/target" erroronmissingdir="false" />
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/token-validator/target" erroronmissingdir="false" />
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/refresh-token-handler/target" erroronmissingdir="false" />
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/token-response-assigner/target" erroronmissingdir="false" />
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/invalid-token-raiser/target" erroronmissingdir="false" />
+      <fileset includes="*.jar" dir="C:\Users\AbhishekGola\OneDrive\POCs\APIGEE-Custome-Auth\APIGEE-Custom-Tokens\microservice-based-oauth2\custom-oauth2-solution\java-callouts\token-generator/token-revoker/target" erroronmissingdir="false" />
+    </copy>
+  </target>
+</project>

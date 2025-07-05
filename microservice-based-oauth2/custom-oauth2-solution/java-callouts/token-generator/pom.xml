@@ -11,19 +11,46 @@
   <artifactId>token-generator</artifactId> <!-- or token-validator, etc. -->
 
   <dependencies>
-    <dependency>
-      <groupId>com.apigee.flow</groupId>
-      <artifactId>message-flow</artifactId>
-      <version>1.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.auth0</groupId>
-      <artifactId>java-jwt</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.datastax.oss</groupId>
-      <artifactId>java-driver-core</artifactId>
-    </dependency>
+    <!-- Apigee Edge Java Callout SDK -->
+  <dependency>
+    <groupId>com.apigee.flow</groupId>
+    <artifactId>message-flow</artifactId>
+    <version>1.0.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/../lib/message-flow-1.0.0.jar</systemPath>
+    <type>jar</type>
+  </dependency>
+  <dependency>
+    <groupId>com.apigee.expressions</groupId>
+    <artifactId>expressions</artifactId>
+    <version>1.0.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/../lib/expressions-1.0.0.jar</systemPath>
+    <type>jar</type>
+  </dependency>
+
+  <!-- Auth0 Java JWT -->
+  <dependency>
+    <groupId>com.auth0</groupId>
+    <artifactId>java-jwt</artifactId>
+    <version>4.4.0</version>
+  </dependency>
+
+  <!-- DataStax Java Driver for Apache Cassandra -->
+  <dependency>
+    <groupId>com.datastax.oss</groupId>
+    <artifactId>java-driver-core</artifactId>
+    <version>4.17.0</version>
+  </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>apigee-repo</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>apigee-edge-maven-repo</id>
+      <url>https://maven.apigee.com/repo</url>
+    </repository>
+  </repositories>
 </project>

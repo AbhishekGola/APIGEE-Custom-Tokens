@@ -2,4 +2,9 @@
 <JavaCallout name="RefreshTokenHandler">
   <ClassName>com.example.RefreshTokenHandler</ClassName>
   <ResourceURL>java://refresh-token-handler.jar</ResourceURL>
+  <Properties>
+    <Property name="cassandra.host">{cassandra_host}</Property>
+    <Property name="cassandra.datacenter">{cassandra_datacenter}</Property>
+    <Property name="cassandra.keyspace">{cassandra_keyspace}</Property>
+  </Properties>
 </JavaCallout>
